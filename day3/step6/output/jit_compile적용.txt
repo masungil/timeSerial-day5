@@ -1,0 +1,212 @@
+2026-02-09 12:12:11.907024: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-09 12:12:11.942445: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI AVX_VNNI_INT8 AVX_NE_CONVERT FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-09 12:12:12.579610: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1770606732.873898   99447 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 5562 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 3070, pci bus id: 0000:02:00.0, compute capability: 8.6
+/home/masungil/miniconda3/envs/tf_gpu/lib/python3.10/site-packages/keras/src/layers/rnn/rnn.py:199: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+/home/masungil/miniconda3/envs/tf_gpu/lib/python3.10/site-packages/keras/src/trainers/trainer.py:212: UserWarning: Model doesn't support `jit_compile=True`. Proceeding with `jit_compile=False`.
+  warnings.warn(
+Epoch 1/100
+2026-02-09 12:12:14.026319: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 91002
+8/8 ━━━━━━━━━━━━━━━━━━━━ 2s 61ms/step - loss: 0.0727 - val_loss: 0.0256
+Epoch 2/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 25ms/step - loss: 0.0391 - val_loss: 0.0323
+Epoch 3/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 28ms/step - loss: 0.0319 - val_loss: 0.0211
+Epoch 4/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 25ms/step - loss: 0.0276 - val_loss: 0.0210
+Epoch 5/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 26ms/step - loss: 0.0252 - val_loss: 0.0204
+Epoch 6/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 25ms/step - loss: 0.0241 - val_loss: 0.0182
+Epoch 7/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 22ms/step - loss: 0.0223 - val_loss: 0.0181
+Epoch 8/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 28ms/step - loss: 0.0207 - val_loss: 0.0171
+Epoch 9/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 28ms/step - loss: 0.0198 - val_loss: 0.0161
+Epoch 10/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 27ms/step - loss: 0.0187 - val_loss: 0.0154
+Epoch 11/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 25ms/step - loss: 0.0179 - val_loss: 0.0149
+Epoch 12/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 26ms/step - loss: 0.0173 - val_loss: 0.0141
+Epoch 13/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 27ms/step - loss: 0.0160 - val_loss: 0.0145
+Epoch 14/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - loss: 0.0152 - val_loss: 0.0130
+Epoch 15/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - loss: 0.0146 - val_loss: 0.0124
+Epoch 16/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - loss: 0.0139 - val_loss: 0.0120
+Epoch 17/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - loss: 0.0135 - val_loss: 0.0115
+Epoch 18/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0131 - val_loss: 0.0109
+Epoch 19/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0126 - val_loss: 0.0104
+Epoch 20/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - loss: 0.0124 - val_loss: 0.0102
+Epoch 21/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - loss: 0.0122 - val_loss: 0.0099
+Epoch 22/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0118 - val_loss: 0.0094
+Epoch 23/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0112 - val_loss: 0.0095
+Epoch 24/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0109 - val_loss: 0.0088
+Epoch 25/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0109 - val_loss: 0.0085
+Epoch 26/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0103 - val_loss: 0.0082
+Epoch 27/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0101 - val_loss: 0.0082
+Epoch 28/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0099 - val_loss: 0.0078
+Epoch 29/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - loss: 0.0097 - val_loss: 0.0077
+Epoch 30/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0096 - val_loss: 0.0075
+Epoch 31/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0091 - val_loss: 0.0073
+Epoch 32/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - loss: 0.0092 - val_loss: 0.0072
+Epoch 33/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0090 - val_loss: 0.0071
+Epoch 34/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0088 - val_loss: 0.0069
+Epoch 35/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0088 - val_loss: 0.0067
+Epoch 36/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0084 - val_loss: 0.0066
+Epoch 37/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0084 - val_loss: 0.0066
+Epoch 38/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0082 - val_loss: 0.0063
+Epoch 39/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - loss: 0.0079 - val_loss: 0.0063
+Epoch 40/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0079 - val_loss: 0.0061
+Epoch 41/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - loss: 0.0077 - val_loss: 0.0059
+Epoch 42/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0077 - val_loss: 0.0061
+Epoch 43/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - loss: 0.0077 - val_loss: 0.0063
+Epoch 44/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0077 - val_loss: 0.0061
+Epoch 45/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - loss: 0.0074 - val_loss: 0.0060
+Epoch 46/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0072 - val_loss: 0.0055
+Epoch 47/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0070 - val_loss: 0.0056
+Epoch 48/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - loss: 0.0070 - val_loss: 0.0054
+Epoch 49/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0069 - val_loss: 0.0054
+Epoch 50/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - loss: 0.0068 - val_loss: 0.0051
+Epoch 51/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - loss: 0.0070 - val_loss: 0.0052
+Epoch 52/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - loss: 0.0066 - val_loss: 0.0051
+Epoch 53/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0066 - val_loss: 0.0052
+Epoch 54/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0067 - val_loss: 0.0050
+Epoch 55/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0065 - val_loss: 0.0049
+Epoch 56/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0065 - val_loss: 0.0048
+Epoch 57/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0062 - val_loss: 0.0048
+Epoch 58/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 3s 421ms/step - loss: 0.0062 - val_loss: 0.0048
+Epoch 59/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - loss: 0.0061 - val_loss: 0.0047
+Epoch 60/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0061 - val_loss: 0.0046
+Epoch 61/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - loss: 0.0060 - val_loss: 0.0046
+Epoch 62/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - loss: 0.0059 - val_loss: 0.0045
+Epoch 63/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - loss: 0.0059 - val_loss: 0.0045
+Epoch 64/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - loss: 0.0059 - val_loss: 0.0044
+Epoch 65/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - loss: 0.0060 - val_loss: 0.0044
+Epoch 66/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0057 - val_loss: 0.0052
+Epoch 67/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0060 - val_loss: 0.0043
+Epoch 68/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0057 - val_loss: 0.0041
+Epoch 69/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0055 - val_loss: 0.0042
+Epoch 70/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - loss: 0.0055 - val_loss: 0.0042
+Epoch 71/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0055 - val_loss: 0.0041
+Epoch 72/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0055 - val_loss: 0.0042
+Epoch 73/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - loss: 0.0056 - val_loss: 0.0041
+Epoch 74/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0053 - val_loss: 0.0041
+Epoch 75/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0052 - val_loss: 0.0040
+Epoch 76/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - loss: 0.0053 - val_loss: 0.0039
+Epoch 77/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - loss: 0.0051 - val_loss: 0.0039
+Epoch 78/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0051 - val_loss: 0.0038
+Epoch 79/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0050 - val_loss: 0.0038
+Epoch 80/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - loss: 0.0050 - val_loss: 0.0037
+Epoch 81/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0049 - val_loss: 0.0037
+Epoch 82/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0050 - val_loss: 0.0039
+Epoch 83/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - loss: 0.0049 - val_loss: 0.0036
+Epoch 84/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - loss: 0.0050 - val_loss: 0.0039
+Epoch 85/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0050 - val_loss: 0.0036
+Epoch 86/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - loss: 0.0048 - val_loss: 0.0038
+Epoch 87/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0049 - val_loss: 0.0035
+Epoch 88/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0047 - val_loss: 0.0035
+Epoch 89/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0047 - val_loss: 0.0038
+Epoch 90/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 28ms/step - loss: 0.0047 - val_loss: 0.0037
+Epoch 91/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - loss: 0.0045 - val_loss: 0.0035
+Epoch 92/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - loss: 0.0045 - val_loss: 0.0034
+Epoch 93/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - loss: 0.0046 - val_loss: 0.0033
+Epoch 94/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 46ms/step - loss: 0.0044 - val_loss: 0.0034
+Epoch 95/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - loss: 0.0046 - val_loss: 0.0037
+Epoch 96/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - loss: 0.0046 - val_loss: 0.0035
+Epoch 97/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.0044 - val_loss: 0.0033
+Epoch 98/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - loss: 0.0044 - val_loss: 0.0033
+Epoch 99/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - loss: 0.0044 - val_loss: 0.0032
+Epoch 100/100
+8/8 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - loss: 0.0043 - val_loss: 0.0032
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 14ms/step

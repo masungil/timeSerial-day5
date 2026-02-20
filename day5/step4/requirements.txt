@@ -1,0 +1,13 @@
+# 데이터 처리 및 수치 계산
+numpy
+pandas
+
+# 데이터 다운로드 및 파일 관리
+requests
+
+# 머신러닝 알고리즘 및 평가
+scikit-learn
+
+# 시각화 (선택 사항 - 결과 확인용)
+matplotlib
+seaborn

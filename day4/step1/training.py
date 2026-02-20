@@ -1,0 +1,158 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
+import tensorflow as tf
+import joblib
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras import mixed_precision
+
+# 4. GPU 하드웨어 가속 최적화 (XLA 컴파일)
+# XLA(Accelerated Linear Algebra)는 모델의 연산 그래프를 분석하여 GPU에 
+# 최적화된 형태로 '통합'해주는 컴파일러입니다.
+# `model.compile` 시 옵션을 추가합니다.
+# model.compile(optimizer='adam', loss='mse', jit_compile=True)
+
+
+
+# 메모리 동적 할당 (RTX 30 시리즈 필수)
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+    tf.config.experimental.set_memory_growth(gpus[0], True)
+
+# 혼합 정밀도 정책 설정
+policy = mixed_precision.Policy('mixed_float16')
+mixed_precision.set_global_policy(policy)
+
+# -한글 폰트 설정
+plt.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['axes.unicode_minus'] = False 
+
+# [단계 1] 데이터 로드 및 시간 변환
+df = pd.read_csv('./data/power_usage_dataset_3month.csv')
+df['Date'] = pd.to_datetime(df['Date'])
+
+# [단계 2] 특성 공학: 시간 및 요일 주기성 반영
+df['hour'] = df['Date'].dt.hour
+df['hour_sin'] = np.sin(2 * np.pi * df['hour'] / 23)
+df['hour_cos'] = np.cos(2 * np.pi * df['hour'] / 23)
+
+df['weekday'] = df['Date'].dt.weekday
+df['weekday_sin'] = np.sin(2 * np.pi * df['weekday'] / 6)
+df['weekday_cos'] = np.cos(2 * np.pi * df['weekday'] / 6)
+
+# 분석에 사용할 6개 필드
+features_list = ['Temperature', 'Usage', 'hour_sin', 'hour_cos', 'weekday_sin', 'weekday_cos']
+data = df[features_list].values
+
+# [단계 3] 데이터 전처리 (스케일링)
+scaler = MinMaxScaler()
+scaled_data = scaler.fit_transform(data)
+
+def create_sequences(data, window_size=168):
+    X, y = [], []
+    for i in range(len(data) - window_size):
+        X.append(data[i:i + window_size, :]) 
+        y.append(data[i + window_size, 1])    # Target: Usage
+    return np.array(X), np.array(y)
+
+window_size = 168 # 1주일(168시간) 패턴 학습
+X, y = create_sequences(scaled_data, window_size)
+
+# 데이터 분할
+split = int(len(X) * 0.8)
+X_train, X_test = X[:split], X[split:]
+y_train, y_test = y[:split], y[split:]
+
+# [단계 4] 모델 설계: Stacked LSTM + Dropout + L2 규제 적용
+model = Sequential([
+    # 첫 번째 LSTM 계층: L2 규제 추가
+    LSTM(128, activation='tanh', 
+         input_shape=(X_train.shape[1], X_train.shape[2]), 
+         return_sequences=True,
+         kernel_regularizer=l2(0.0001)), # L2 규제 (가중치 제한)
+    Dropout(0.2), # 드롭아웃 (20% 뉴런 비활성화)
+    
+    # 두 번째 LSTM 계층: L2 규제 추가
+    LSTM(64, activation='tanh', 
+         return_sequences=False,
+         kernel_regularizer=l2(0.0001)),
+    Dropout(0.1),
+    
+    # 출력 계층
+    Dense(1, dtype='float32')
+])
+
+# [단계 5] 모델 컴파일 및 학습
+#model.compile(optimizer='adam', loss='mse')
+#      학습률을 0.002로 높여서 설정 (기본값보다 2배 빠른 보폭)
+optimizer = Adam(learning_rate=0.001)
+#model.compile(optimizer=optimizer, loss='mse')
+ 
+# GPU 하드웨어 가속 최적화 (XLA 컴파일)
+model.compile(optimizer=optimizer, loss='mse', jit_compile=True)
+
+
+# 과적합 방지를 위해 EarlyStopping 유지
+early_stop = EarlyStopping(monitor='val_loss', patience=7, restore_best_weights=True)
+
+# 모델 학습
+history = model.fit(
+    X_train, y_train,
+    epochs=50,
+#    batch_size=32,
+    batch_size=256, # 수정 : batch_size를 크게 설정하기 하여 성능 향상하기
+    validation_split=0.1,
+    callbacks=[early_stop],
+    verbose=1
+)
+
+# [단계 5] 예측 및 역스케일링
+predictions_scaled = model.predict(X_test)
+
+def get_original_units(scaled_values, scaler, feature_count, target_idx=1):
+    dummy = np.zeros((len(scaled_values), feature_count))
+    dummy[:, target_idx] = scaled_values.flatten()
+    return scaler.inverse_transform(dummy)[:, target_idx]
+
+y_test_original = get_original_units(y_test, scaler, len(features_list))
+predictions_original = get_original_units(predictions_scaled, scaler, len(features_list))
+
+# [단계 6] 결과 시각화
+plt.figure(figsize=(14, 6))
+plt.plot(y_test_original[:168], label='실제값', color='#1f77b4', linewidth=2)
+plt.plot(predictions_original[:168], label='예측값', color='#ff7f0e', linestyle='--', linewidth=2)
+plt.title('Stacked LSTM Model: 스마트 기기 전력 사용량 예측')
+plt.xlabel('시간')
+plt.ylabel('전력 사용량(kW)')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+
+
+# ---------------------------------------------------------
+# [추가 단계] 모델 및 스케일러 저장 (Export)
+# ---------------------------------------------------------
+
+# 7. 모델 저장
+# Keras의 표준 형식인 .h5 또는 최신 SavedModel 형식으로 저장할 수 있습니다.
+# 여기서는 가장 대중적인 .h5 형식을 사용합니다.
+model_filename = './model/power_usage_lstm_model.h5'
+model.save(model_filename)
+print(f"✅ 모델이 '{model_filename}'으로 저장되었습니다.")
+
+# 8. 스케일러 저장
+# 모델이 0~1 사이의 숫자로 대화하도록 학습되었으므로, 
+# 나중에 실전에서 데이터를 넣을 때 '단위 환산표' 역할을 할 스케일러가 반드시 필요합니다.
+scaler_filename = './model/power_usage_scaler.pkl'
+joblib.dump(scaler, scaler_filename)
+print(f"✅ 스케일러가 '{scaler_filename}'으로 저장되었습니다.")
+
+# 9. 저장 결과 확인 (옵션)
+import os
+file_size = os.path.getsize(model_filename) / (1024 * 1024)
+print(f"📦 저장된 모델 크기: {file_size:.20f} MB")

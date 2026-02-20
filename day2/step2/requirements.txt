@@ -1,0 +1,4 @@
+pandas
+koreanize-matplotlib #OS에 독립적인 한글 라이브러리 
+matplotlib
+statsmodels
