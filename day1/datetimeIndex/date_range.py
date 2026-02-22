@@ -33,6 +33,10 @@ df["date"] = pd.to_datetime(df["date"])
 # 3. date 컬럼을 Index(시간 인덱스)로 설정
 df.set_index("date", inplace=True)
 
+# 위 두 라인(2,3)이 실행되면 df는 **시계열 데이터프레임(Time Series DataFrame)**으로 변환됩니다 
+
+
+
 # DatetimeIndex 객체를 출력합니다
 print(df)
 
