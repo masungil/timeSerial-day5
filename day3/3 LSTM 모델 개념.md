@@ -62,7 +62,7 @@ $$h_t = o_t * \tanh(C_t)$$
 
 ## 5. 시계열 예측에서 LSTM이 중요한 이유
 
-시계열 예측(Time-Series Forecasting)에서 LSTM이 '게임 체인저'로 불리는 이유는 데이터가 가진 **시간적 문맥(Temporal Context)**을 가장 잘 이해하기 때문입니다.
+시계열 예측(Time-Series Forecasting)에서 LSTM이 '게임 체인저'로 불리는 이유는 데이터가 가진 **시간적 문맥(Temporal Context)** 을 가장 잘 이해하기 때문입니다.
 
 일반적인 머신러닝 모델은 데이터 포인트 하나하나를 독립적으로 보지만, LSTM은 데이터 사이의 흐름과 패턴을 포착합니다.
 
