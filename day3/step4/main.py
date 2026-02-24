@@ -47,8 +47,8 @@ print(f"테스트 데이터 크기: {X_test.shape}")
 # 5. LSTM 모델 설계 (최신 Keras 방식 적용)
 model = Sequential([
     Input(shape=(window_size, 1)), 
-    LSTM(64, activation='relu'),
-    Dense(32, activation='relu'),
+    LSTM(64, activation='tanh'),
+    Dense(32, activation='tanh'),
     Dense(1)
 ])
 
