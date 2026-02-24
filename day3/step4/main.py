@@ -77,3 +77,8 @@ plt.ylabel('Usage')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+plt.plot(history.history['loss'], label='학습손실')
+plt.plot(history.history['val_loss'], label='검증손실')
+plt.legend()
+plt.show()
