@@ -18,8 +18,8 @@ WSL2에서 GPU를 쓰기 위해서는 하드웨어를 직접 제어하는 Window
 
 ```powershell
 # WSL 및 가상 머신 플랫폼 활성화 상태 확인
-Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux, VirtualMachinePlatform | Select-Object FeatureName, State
-
+Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+Get-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 ```
 
 * **State가 `Enabled`인 경우**: 이미 켜져 있는 상태입니다.
